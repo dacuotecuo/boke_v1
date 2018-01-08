@@ -1,2 +1,1 @@
-# boke_v1
-boke
+# boke version 1.0
