@@ -10,20 +10,22 @@ class CLogFileHandler implements ILogHandler
 {
 	private $handle = null;
 	
-	
+	//构造函数
 	public function __construct ($file = '')
 	{
-		$this->handle = fopen($file,'a');
+		$this -> handle = fopen($file, 'a');
 	}
 	
+	//写日志
 	public function write ($msg)
 	{
-		fwrite($this->handle, $msg, 4096);
+		fwrite($this -> handle, $msg, 4096);
 	}
 	
+	//析构函数
 	public function __destruct()
 	{
-		fclose($this->handle);
+		fclose($this -> handle);
 	}
 }
 
@@ -44,7 +46,7 @@ class Log
 		{
 			self::$instance = new self();
 			self::$instance->__setHandle($handler);
-			self::$instance->__setLevel($level);
+			self::$instance->__setLevel($level);	
 		}
 		return self::$instance;
 	}
@@ -93,6 +95,7 @@ class Log
 		self::$instance -> write(2, $msg);
 	}
 	
+	//获取日志等级
 	private function getLevelStr($level)
 	{
 		switch ($level)
@@ -114,7 +117,7 @@ class Log
 	}
 	
 	/**
-	 * 
+	 * 写日志
 	 */
 	protected function write ($level, $msg)
 	{
